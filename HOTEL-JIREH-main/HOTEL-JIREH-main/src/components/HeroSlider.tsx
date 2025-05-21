@@ -4,19 +4,19 @@ import { Button } from '@/components/ui/button';
 
 const sliderImages = [
   {
-    url: "./src/image/san-carlos_0.jpg",
+    url: "./src/image/cas.jpg",
     alt: "San carlos"
   },
   {
-    url: "./src/image/images.jpeg",
+    url: "./src/image/jm.jpg",
     alt: "Iglesia de San Carlos"
   },
   {
-    url: "https://images.unsplash.com/photo-1515729947596-a598e5de0ab3",
+    url: "./src/image/agua.jpg",
     alt: "Paisaje montañoso alrededor del lodge"
   },
   {
-    url: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86",
+    url: "./src/image/mon.jpeg",
     alt: "Bosque donde se encuentra el lodge ecológico"
   }
 ];
