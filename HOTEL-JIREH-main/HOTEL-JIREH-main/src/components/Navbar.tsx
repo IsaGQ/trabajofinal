@@ -71,6 +71,7 @@ const Navbar = () => {
         {/* Login Form */}
         {formVisible && (
           <div className="absolute top-full right-0 mt-2 bg-green-100 text-black p-4 rounded shadow-lg w-72 z-50 border border-green-300">
+            <p className='ext-sm text-green-700 block mb-2 text-center'>Iniciar Sesión</p>
             <input
               type="text"
               placeholder="Usuario"
@@ -86,6 +87,7 @@ const Navbar = () => {
               className="w-full mb-2 px-2 py-1 border rounded border-green-300"
             />
             <a href="#" className="text-sm text-green-700 block mb-2 hover:underline">¿Olvidaste tu contraseña?</a>
+            <a href="/registro" className="text-sm text-green-700 block mb-2 hover:underline">¿No tienes una cuenta?</a>
             <button
               onClick={handleLogin}
               className="w-full bg-green-500 text-white py-1 rounded hover:bg-green-600"

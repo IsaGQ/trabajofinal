@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Rooms from "./pages/Rooms";
 import Services from "./pages/Services";
 import Reservation from "./pages/Reservation";
+import Registrarse from "./pages/Registrarse";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/habitaciones" element={<Rooms />} />
           <Route path="/servicios" element={<Services />} />
           <Route path="/reserva" element={<Reservation />} />
+          <Route path="/registro" element={<Registrarse />} />
 
           {/* Página no encontrada */}
           <Route path="*" element={<NotFound />} />
