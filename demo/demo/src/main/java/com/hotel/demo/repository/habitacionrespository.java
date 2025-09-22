@@ -2,7 +2,7 @@ package com.hotel.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.hotel.demo.model.habitacion;
+import com.hotel.demo.model.Habitacion;
 
-public interface habitacionrespository extends JpaRepository<habitacion, Long> {
+public interface HabitacionRespository extends JpaRepository<Habitacion, Long> {
 }

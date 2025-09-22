@@ -8,40 +8,40 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hotel.demo.model.habitacion;
-import com.hotel.demo.model.reservacion;
-import com.hotel.demo.repository.habitacionrespository;
-import com.hotel.demo.repository.reservarepository;
+import com.hotel.demo.model.Habitacion;
+import com.hotel.demo.model.Reservacion;
+import com.hotel.demo.repository.HabitacionRespository;
+import com.hotel.demo.repository.ReservaRepository;
 
 @Service
-public class reservasrvice {
+public class ReservaService {
 
     @Autowired
-    private reservarepository reservaRepository;
+    private ReservaRepository reservaRepository;
     @Autowired
-    private habitacionrespository habitacionRepository;
+    private HabitacionRespository habitacionRepository;
 
-    public reservasrvice(reservarepository reservaRepository) {
+    public ReservaService(ReservaRepository reservaRepository) {
         this.reservaRepository = reservaRepository;
     }
 
     // Obtener todas las reservas
-    public List<reservacion> obtenerTodas() {
+    public List<Reservacion> obtenerTodas() {
         return reservaRepository.findAll();
     }
 
     // Obtener una reserva por ID
-    public reservacion obtenerPorId(Long id) {
-        Optional<reservacion> reserva = reservaRepository.findById(id);
+    public Reservacion obtenerPorId(Long id) {
+        Optional<Reservacion> reserva = reservaRepository.findById(id);
         return reserva.orElse(null);
     }
 
-    public reservacion crearReserva(reservacion reserva) {
-        List<habitacion> habitacionesCompletas = new ArrayList<>();
+    public Reservacion crearReserva(Reservacion reserva) {
+        List<Habitacion> habitacionesCompletas = new ArrayList<>();
         double total = 0;
 
-        for (habitacion h : reserva.getHabitaciones()) {
-            habitacion habBD = habitacionRepository.findById(h.getId())
+        for (Habitacion h : reserva.getHabitaciones()) {
+            Habitacion habBD = habitacionRepository.findById(h.getId())
                     .orElseThrow(() -> new RuntimeException("Habitación no encontrada"));
             habitacionesCompletas.add(habBD);
 
@@ -56,8 +56,8 @@ public class reservasrvice {
     }
 
     // Actualizar reserva
-    public reservacion actualizarReserva(Long id, reservacion reservaActualizada) {
-        reservacion reservaExistente = reservaRepository.findById(id).orElse(null);
+    public Reservacion actualizarReserva(Long id, Reservacion reservaActualizada) {
+        Reservacion reservaExistente = reservaRepository.findById(id).orElse(null);
         if (reservaExistente == null) {
             return null;
         }
@@ -72,8 +72,8 @@ public class reservasrvice {
         reservaExistente.setConfirmada(reservaActualizada.isConfirmada());
 
         // Buscar habitaciones completas desde la base de datos
-        List<habitacion> habitacionesActualizadas = new ArrayList<>();
-        for (habitacion h : reservaActualizada.getHabitaciones()) {
+        List<Habitacion> habitacionesActualizadas = new ArrayList<>();
+        for (Habitacion h : reservaActualizada.getHabitaciones()) {
             habitacionRepository.findById(h.getId()).ifPresent(habitacionesActualizadas::add);
         }
         reservaExistente.setHabitaciones(habitacionesActualizadas);
@@ -84,7 +84,7 @@ public class reservasrvice {
                 reservaExistente.getFechaSalida());
 
         double total = 0.0;
-        for (habitacion h : habitacionesActualizadas) {
+        for (Habitacion h : habitacionesActualizadas) {
             total += h.getPrecioPorNoche() * dias;
         }
         reservaExistente.setPrecioTotal(total);

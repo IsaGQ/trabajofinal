@@ -14,6 +14,15 @@ public class Usuario {
 
     private String username;
     private String password;
+    private boolean isAdmin = false;
+
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     // Constructores
     public Usuario() {

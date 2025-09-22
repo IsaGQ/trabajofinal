@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
 @Entity
-public class reservacion {
+public class Reservacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,7 +30,7 @@ public class reservacion {
 
     // Habitaciones reservadas (pueden ser varias)
     @ManyToMany
-    private List<habitacion> habitaciones;
+    private List<Habitacion> habitaciones;
 
     // (Opcional) Estado de la reserva
     private boolean confirmada;
@@ -100,11 +100,11 @@ public class reservacion {
         this.precioTotal = precioTotal;
     }
 
-    public List<habitacion> getHabitaciones() {
+    public List<Habitacion> getHabitaciones() {
         return habitaciones;
     }
 
-    public void setHabitaciones(List<habitacion> habitaciones) {
+    public void setHabitaciones(List<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
     }
 

@@ -2,8 +2,8 @@ package com.hotel.demo.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotel.demo.model.cliente;
-import com.hotel.demo.repository.clienterepository;
+import com.hotel.demo.model.Cliente;
+import com.hotel.demo.repository.ClienteRepository;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,25 +20,25 @@ import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api/clientes")
-public class clientecontroller {
+public class ClienteController {
 
     @Autowired
-    private clienterepository clienteRepository;
+    private ClienteRepository clienteRepository;
 
     @PostMapping
-    public ResponseEntity<cliente> addCliente(@RequestBody cliente cliente) {
+    public ResponseEntity<Cliente> addCliente(@RequestBody Cliente cliente) {
         return ResponseEntity.ok(clienteRepository.save(cliente));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<cliente> getCliente(@PathVariable Long id) {
+    public ResponseEntity<Cliente> getCliente(@PathVariable Long id) {
         return clienteRepository.findById(id)
             .map(cliente -> ResponseEntity.ok(cliente))
             .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<cliente> updateCliente(@PathVariable Long id, @RequestBody cliente cliente) {
+    public ResponseEntity<Cliente> updateCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
         if (!clienteRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }

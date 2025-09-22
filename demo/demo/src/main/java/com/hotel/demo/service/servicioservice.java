@@ -5,27 +5,27 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.hotel.demo.model.servicios;
-import com.hotel.demo.repository.serviciosrepository;
+import com.hotel.demo.model.Servicios;
+import com.hotel.demo.repository.ServiciosRepository;
 
 @Service
-public class servicioservice {
+public class ServicioService {
 
-    private final serviciosrepository servicioRepository;
+    private final ServiciosRepository servicioRepository;
 
-    public servicioservice(serviciosrepository servicioRepository) {
+    public ServicioService(ServiciosRepository servicioRepository) {
         this.servicioRepository = servicioRepository;
     }
 
-    public List<servicios> listarServicios() {
+    public List<Servicios> listarServicios() {
         return servicioRepository.findAll();
     }
 
-    public servicios guardarServicio(servicios servicio) {
+    public Servicios guardarServicio(Servicios servicio) {
         return servicioRepository.save(servicio);
     }
 
-    public Optional<servicios> obtenerServicioPorId(Long id) {
+    public Optional<Servicios> obtenerServicioPorId(Long id) {
         return servicioRepository.findById(id);
     }
 
@@ -33,7 +33,7 @@ public class servicioservice {
         servicioRepository.deleteById(id);
     }
 
-    public servicios actualizarServicio(Long id, servicios servicioActualizado) {
+    public Servicios actualizarServicio(Long id, Servicios servicioActualizado) {
         return servicioRepository.findById(id).map(servicio -> {
             servicio.setNombre(servicioActualizado.getNombre());
             servicio.setDescripcion(servicioActualizado.getDescripcion());

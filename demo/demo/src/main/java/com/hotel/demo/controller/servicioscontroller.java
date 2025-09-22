@@ -2,33 +2,33 @@ package com.hotel.demo.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.hotel.demo.model.servicios;
-import com.hotel.demo.service.servicioservice;
+import com.hotel.demo.model.Servicios;
+import com.hotel.demo.service.ServicioService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/servicios")
-public class servicioscontroller {
+public class ServiciosController {
 
-    private final servicioservice servicioService;
+    private final ServicioService servicioService;
 
-    public servicioscontroller(servicioservice servicioService) {
+    public ServiciosController(ServicioService servicioService) {
         this.servicioService = servicioService;
     }
 
     @GetMapping
-    public List<servicios> listarServicios() {
+    public List<Servicios> listarServicios() {
         return servicioService.listarServicios();
     }
 
     @PostMapping
-    public servicios crearServicio(@RequestBody servicios servicio) {
+    public Servicios crearServicio(@RequestBody Servicios servicio) {
         return servicioService.guardarServicio(servicio);
     }
 
     @GetMapping("/{id}")
-    public servicios obtenerServicio(@PathVariable Long id) {
+    public Servicios obtenerServicio(@PathVariable Long id) {
         return servicioService.obtenerServicioPorId(id)
                 .orElseThrow(() -> new RuntimeException("Servicio no encontrado con ID: " + id));
     }
@@ -39,7 +39,7 @@ public class servicioscontroller {
     }
 
     @PutMapping("/{id}")
-    public servicios actualizarServicio(@PathVariable Long id, @RequestBody servicios servicioActualizado) {
+    public Servicios actualizarServicio(@PathVariable Long id, @RequestBody Servicios servicioActualizado) {
     return servicioService.actualizarServicio(id, servicioActualizado);
 }
 
