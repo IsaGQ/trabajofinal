@@ -17,6 +17,7 @@ import com.hotel.demo.dto.RegisterForm;
 import com.hotel.demo.model.Cliente;
 import com.hotel.demo.model.Usuario;
 import com.hotel.demo.repository.UsuarioRepository;
+import com.hotel.demo.service.AuthService;
 
 import jakarta.transaction.Transactional;
 
@@ -33,6 +34,8 @@ public class AuthController {
     private ClienteRepository clienteRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AuthService authService;
 
     private static final JwtUtil jwtUtil = new JwtUtil();
 
@@ -87,4 +90,14 @@ public class AuthController {
                 "usuario", usuarioDTO
         ));
     }
+
+    @GetMapping("/isAuthenticated/{token}")
+    public ResponseEntity<?> isAuthenticated(@PathVariable String token) {
+        if (authService.isAuthenticated(token)) {
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.badRequest().body(Map.of("message", "Usuario no autenticado"));
+    }
+
 }
