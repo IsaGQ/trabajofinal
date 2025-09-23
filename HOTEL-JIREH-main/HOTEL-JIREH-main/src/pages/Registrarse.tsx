@@ -23,7 +23,28 @@ const Registrarse = () => {
     password: "",
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // JSON
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Registro exitoso:", data);
+      } else {
+        console.error("Error en el registro:", response.status);
+      }
+    } catch (error) {
+      console.error("Error en la petición:", error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -122,6 +143,7 @@ const Registrarse = () => {
                       name="username"
                       value={formData.username}
                       onChange={handleChange}
+                      placeholder="Elige tu nombre de usuario"
                       required
                     />
                   </div>
@@ -145,7 +167,7 @@ const Registrarse = () => {
                     type="submit"
                     className="w-full bg-eco-dark-green hover:bg-eco-medium-green text-white"
                   >
-                    Enviar Solicitud de Reserva
+                    Registrarse
                   </Button>
 
                   <p className="text-sm text-gray-500 mt-4">

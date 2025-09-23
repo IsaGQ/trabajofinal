@@ -38,7 +38,7 @@ const Reservation = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen"> 
       <Navbar />
       <div className="pt-24 pb-8 bg-eco-light-green bg-opacity-20">
         <div className="container mx-auto px-4">

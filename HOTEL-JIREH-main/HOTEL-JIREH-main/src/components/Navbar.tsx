@@ -17,12 +17,15 @@ const Navbar = () => {
         body: JSON.stringify({ username, password }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         alert('Login exitoso');
         window.open('/admin', '_blank');
+        localStorage.setItem("auth", data.token);
         setFormVisible(false);
       } else {
-        alert('Error al iniciar sesión');
+        alert('Error al iniciar sesión' + data.message);
       }
     } catch (error) {
       console.error('Error:', error);
